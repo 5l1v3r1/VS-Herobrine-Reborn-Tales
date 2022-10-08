@@ -4,24 +4,6 @@ didskip = false
 function onCreate()
 	-- background shit
 
-	--precacheImage('characters/bf_steve');
-	--precacheImage('characters/Brin_Normal');
-	--precacheImage('sky_blue');
-	--precacheImage('sunset_sky');
-	--precacheImage('night_sky');
-	--precacheImage('backmc');
-	--precacheImage('groundmc');
-	--precacheImage('shrin');
-	--precacheImage('RTXBrin');
-
-	if (songName == 'No-Escape') then
-		makeLuaSprite('bg1funnie', 'RTXBrin',-1270,300);
-		setScrollFactor('bg1funnie', 0.99, 0.99);
-		scaleObject('bg1funnie', 200,200);
-		screenCenter('bg1funnie');
-		addLuaSprite('bg1funnie', false);
-	end
-
 	if (songName == 'summon') then
 		makeLuaSprite('bg1', 'sky_blue',-1270,300);
 		setScrollFactor('bg1', 0.99, 0.99);
@@ -66,11 +48,6 @@ function onCreate()
 	scaleObject('thesummoning', 2.6,2.6);
 	addLuaSprite('thesummoning', false);
 
-	makeLuaText('skip', 'Press Space to Skip Intro', 1270, 0, 200);
-	addLuaText('skip');
-	setTextSize('skip', 30)
-	setObjectCamera('skip', 'other')
-
 end
 
 function onCreatePost()
@@ -102,62 +79,6 @@ function onUpdate(elapsed)
 			setproperty('dad.x', getProperty('dad.x') - 24000);
 			setProperty('dad.color', getColorFromHex('fc9458'));
 			setProperty('boyfriend.color', getColorFromHex('fc9458'));
-		end
-	end
-end
-
-function onUpdatePost()
-	if (songName == 'summon') then
-		if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not getProperty('startingSong') and didskip == false then
-				didskip = true
-				removeLuaText('skip');
-				setPropertyFromClass('Conductor', 'songPosition', 19889) -- it is counted by milliseconds, 1000 = 1 second
-				setPropertyFromClass('flixel.FlxG', 'sound.music.time', getPropertyFromClass('Conductor', 'songPosition'))
-				setProperty('vocals.time', getPropertyFromClass('Conductor', 'songPosition'))
-		end
-		if curStep > 239 then
-			doTweenAlpha('skipfuera','skip',0,2,'linear')
-		end
-	end
-	if (songName == 'Final-Warning') then
-		setTextString('skip', 'Press Space to Skip Intro (RECCOMMENDED)');
-		if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not getProperty('startingSong') and didskip == false then
-				didskip = true
-				removeLuaText('skip');
-				setPropertyFromClass('Conductor', 'songPosition', 18000) -- it is counted by milliseconds, 1000 = 1 second
-				setPropertyFromClass('flixel.FlxG', 'sound.music.time', getPropertyFromClass('Conductor', 'songPosition'))
-				setProperty('vocals.time', getPropertyFromClass('Conductor', 'songPosition'))
-		end
-		if curStep > 256 then
-			doTweenAlpha('skipfuera','skip',0,2,'linear')
-			didskip = true
-		end
-	end
-	if (songName == 'No-Escape') then
-		if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not getProperty('startingSong') and didskip == false then
-				didskip = true
-				removeLuaText('skip');
-				setPropertyFromClass('Conductor', 'songPosition', 37959) -- it is counted by milliseconds, 1000 = 1 second
-				setPropertyFromClass('flixel.FlxG', 'sound.music.time', getPropertyFromClass('Conductor', 'songPosition'))
-				setProperty('vocals.time', getPropertyFromClass('Conductor', 'songPosition'))
-		end
-		if curStep > 495 then
-			doTweenAlpha('skipfuera','skip',0,2,'linear')
-			didskip = true
-		end
-	end
-
-	if (songName == 'crashlog') then
-		if getPropertyFromClass('flixel.FlxG', 'keys.justPressed.SPACE') and not getProperty('startingSong') and didskip == false then
-				didskip = true
-				removeLuaText('skip');
-				setPropertyFromClass('Conductor', 'songPosition', 18461) -- it is counted by milliseconds, 1000 = 1 second
-				setPropertyFromClass('flixel.FlxG', 'sound.music.time', getPropertyFromClass('Conductor', 'songPosition'))
-				setProperty('vocals.time', getPropertyFromClass('Conductor', 'songPosition'))
-		end
-		if curStep > 239 then
-			doTweenAlpha('skipfuera','skip',0,2,'linear')
-			didskip = true
 		end
 	end
 end
